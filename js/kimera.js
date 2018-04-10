@@ -2,22 +2,23 @@
 var acordeon = document.querySelectorAll('acordeon');
 var body = document.querySelector('body');
 var head = document.querySelector('head');
-var close_button = document.querySelectorAll('close');
 var checkbox = document.querySelectorAll('checkbox');
 var dropdown = document.querySelectorAll('dropdown');
 var dropmenu = document.querySelectorAll('dropmenu');
-var form_color = document.querySelectorAll('color');
 var radio = document.querySelectorAll('radio');
 var fab = document.querySelectorAll('fab');
 var fabmenu = document.querySelectorAll('fabmenu');
 var navbar = document.querySelectorAll('navbar');
 var modal = document.querySelectorAll('[modal]');
-var process_bar = document.querySelectorAll('process');
 var range = document.querySelectorAll('range');
 var slideshow = document.querySelectorAll('slideshow');
 var tabs = document.querySelectorAll('tabs');
 var tabsContent = document.querySelectorAll('tabs-content');
-var toggle_button = document.querySelectorAll('toggle');
+//unused vars
+// let close_button = document.querySelectorAll('close');
+// let form_color: NodeListOf<Element> = document.querySelectorAll('color');
+// let process_bar: NodeListOf<Element> = document.querySelectorAll('process');
+// let toggle_button: NodeListOf<Element> = document.querySelectorAll('toggle');
 // initializes dynamic components
 init('checkbox');
 init('radio');
@@ -126,7 +127,9 @@ role initializes a elment type renage
 @param el: The parent element <range></range> selected
 */
 function initRange(el) {
-    var input = el.querySelector('input'), label = el.querySelector('label'), position = parseInt(window.getComputedStyle(input, null).getPropertyValue('width')) / 100;
+    var input = el.querySelector('input');
+    var label = el.querySelector('label');
+    var position = parseInt(window.getComputedStyle(input, null).getPropertyValue('width')) / 100;
     label.style.left = ((parseInt(input.value) * position) - 10) + "px";
     label.textContent = input.value;
     onEventListener(input, 'input mousedown', updateRange);
@@ -337,7 +340,8 @@ function removeAttr(el, attr) {
 // select all previous elements siblings
 /* @param element - type: DOM objet */
 function prevSiblings(target) {
-    var siblings = [], n = target;
+    var siblings = [];
+    var n = target;
     if (n !== null && n !== undefined && n + '' !== '') {
         while (n = n.previousElementSibling) {
             siblings.push(n);
@@ -366,7 +370,8 @@ function nextSiblings(target) {
 // save all previous and next elements siblings in array objet
 /* @param element - type: DOM objet */
 function siblings(target) {
-    var previus = prevSiblings(target) || [], next = nextSiblings(target) || [];
+    var previus = prevSiblings(target) || [];
+    var next = nextSiblings(target) || [];
     return previus.concat(next);
 }
 // fab, dropdown event listener
