@@ -7,18 +7,13 @@ var dropdown = document.querySelectorAll('dropdown');
 var dropmenu = document.querySelectorAll('dropmenu');
 var radio = document.querySelectorAll('radio');
 var fab = document.querySelectorAll('fab');
-var fabmenu = document.querySelectorAll('fabmenu');
+//let fabmenu: NodeListOf<Element> = document.querySelectorAll('fabmenu');
 var navbar = document.querySelectorAll('navbar');
 var modal = document.querySelectorAll('[modal]');
 var range = document.querySelectorAll('range');
-var slideshow = document.querySelectorAll('slideshow');
+// let slideshow: NodeListOf<Element> = document.querySelectorAll('slideshow');
 var tabs = document.querySelectorAll('tabs');
 var tabsContent = document.querySelectorAll('tabs-content');
-//unused vars
-// let close_button = document.querySelectorAll('close');
-// let form_color: NodeListOf<Element> = document.querySelectorAll('color');
-// let process_bar: NodeListOf<Element> = document.querySelectorAll('process');
-// let toggle_button: NodeListOf<Element> = document.querySelectorAll('toggle');
 // initializes dynamic components
 init('checkbox');
 init('radio');
@@ -29,14 +24,14 @@ init('logo');
 init('range');
 /* ================== Import system CSS ==================== */
 var kmInclude = body.getAttribute('km-include'); //get attribute km-include
-var PATH_URL = '//cdn.jsdelivr.net/npm/kimera@0.4.4/css/'; // path CDN
+var PATH_URL = '//cdn.jsdelivr.net/npm/kimera@0.4.6/css/'; // path CDN
 var includeCSS;
 if (kmInclude) {
     includeCSS = ("base " + kmInclude).split(' ');
     var hasKimera = validateArray(includeCSS, 'kimera');
     var url_include = void 0;
     if (hasKimera) {
-        url_include = PATH_URL + "kimera.min.css}"; // url to file base.min.css
+        url_include = PATH_URL + "kimera.min.css"; // url to file base.min.css
         head.appendChild(createLink(url_include));
     }
     else {
@@ -46,8 +41,8 @@ if (kmInclude) {
         }
     }
 }
-// hide a element
-/* @param el: DOM element, classContain:  */
+/* hides an element.
+@param el: DOM element, classContain: class of the element */
 function hideSelector(el, classContain) {
     if (el.length > 0) {
         for (var i = 0; i < el.length; i++) {
@@ -127,9 +122,7 @@ role initializes a elment type renage
 @param el: The parent element <range></range> selected
 */
 function initRange(el) {
-    var input = el.querySelector('input');
-    var label = el.querySelector('label');
-    var position = parseInt(window.getComputedStyle(input, null).getPropertyValue('width')) / 100;
+    var input = el.querySelector('input'), label = el.querySelector('label'), position = parseInt(window.getComputedStyle(input, null).getPropertyValue('width')) / 100;
     label.style.left = ((parseInt(input.value) * position) - 10) + "px";
     label.textContent = input.value;
     onEventListener(input, 'input mousedown', updateRange);
@@ -167,58 +160,6 @@ function showContentTab(id) {
         document.querySelector(id).classList.add('is-active');
     }
 }
-/* =============== Slideshow ================ */
-/*if (slideshow.length > 0) {
-    for (let i = 0; i < slideshow.length; i++) {
-        let nextSlider = slideshow[i].querySelector('.next-slide');
-        let previuSlider = slideshow[i].querySelector('.previus-slide');
-        let intervalSlide = slideshow[i].getAttribute('interval') || 5000;
-        let slider = slideshow[i].querySelectorAll('slider');
-        let ctrl = 0;
-
-        slider[0].classList.add('is-visible');
-        for (let h = 0; h < slider.length; h++) {
-            let sliderImg = slider[h].getAttribute('src');
-            let sliderAlt = slider[h].getAttribute('alt');
-            let img = document.createElement('img');
-            img.setAttribute('src', sliderImg);
-            img.setAttribute('alt', sliderAlt);
-            slider[h].appendChild(img);
-            removeAttr(slider[h], 'src alt');
-        }
-
-        onEventListener(nextSlider, 'click', function() {
-            if (ctrl === slider.length - 1) ctrl = -1;
-            controlSlide(1);
-        });
-
-        onEventListener(previuSlider, 'click', function() {
-            if (ctrl === 0) ctrl = slider.length;
-            controlSlide(-1);
-        });
-
-        if (slideshow[i].hasAttribute('autoplay')) {
-            setInterval(controlSlide(1), intervalSlide);
-        }
-
-        function controlSlide(c) {
-            clearSlides();
-            if (c > 0) {
-                ctrl++;
-                slider[ctrl].classList.add('is-visible');
-            } else {
-                ctrl--;
-                slider[ctrl].classList.add('is-visible');
-            }
-        }
-
-        function clearSlides() {
-            for (let i = 0; i < slider.length; i++) {
-                slider[i].classList.remove('is-visible');
-            }
-        }
-    }
-}*/
 /*
 initialized function for dinamic components.
 @params
@@ -228,7 +169,8 @@ type: string
 function init(component) {
     var element = document.querySelectorAll(component);
     for (var i = 0; i < element.length; i++) {
-        var currentElement = element[i], id = currentElement.id;
+        var currentElement = element[i];
+        var id = currentElement.id;
         var text = currentElement.getAttribute('text');
         var check = currentElement.getAttribute('checked');
         var require_1 = currentElement.getAttribute('required');
@@ -239,7 +181,7 @@ function init(component) {
             case 'checkbox':
             case 'radio':
                 currentElement.innerHTML =
-                    "<input type=\"" + component + "\"" + (id ? ' id="' + id + '"' : '') + (form ? ' form="' + form + '"' : '') + (name_1 ? ' name="' + name_1 + '"' : '') + (check ? check : '') + (require_1 ? require_1 : '') + "/><label " + (id ? ' for="' + id + '"' : '') + ">" + (text ? text : '') + "</label>";
+                    "<input type=\"" + component + "\"" + (id ? ' id="' + id + '"' : '') + (value ? ' value="' + value + '"' : '') + (form ? ' form="' + form + '"' : '') + (name_1 ? ' name="' + name_1 + '"' : '') + (check ? check : '') + (require_1 ? require_1 : '') + "/><label " + (id ? ' for="' + id + '"' : '') + ">" + (text ? text : '') + "</label>";
                 break;
             case 'color':
                 currentElement.innerHTML = '<input type="color"' + (id ? 'id="' + id + '"' : '') + (value ? 'value="' + value + '"' : '') + '/>';
@@ -277,6 +219,8 @@ function createLink(url) {
     var link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', url);
+    // link.rel = 'stylesheet';
+    // link.href = url;
     return link;
 }
 // multiple Add event listeners (element, events, function)
@@ -340,8 +284,7 @@ function removeAttr(el, attr) {
 // select all previous elements siblings
 /* @param element - type: DOM objet */
 function prevSiblings(target) {
-    var siblings = [];
-    var n = target;
+    var siblings = [], n = target;
     if (n !== null && n !== undefined && n + '' !== '') {
         while (n = n.previousElementSibling) {
             siblings.push(n);
@@ -370,13 +313,71 @@ function nextSiblings(target) {
 // save all previous and next elements siblings in array objet
 /* @param element - type: DOM objet */
 function siblings(target) {
-    var previus = prevSiblings(target) || [];
-    var next = nextSiblings(target) || [];
+    var previus = prevSiblings(target) || [], next = nextSiblings(target) || [];
     return previus.concat(next);
 }
-// fab, dropdown event listener
+/**fab, dropdown event listener*/
 function showToggle(e) {
     e.stopPropagation();
     this.nextElementSibling.classList.toggle('is-visible');
 }
-//# sourceMappingURL=kimera.js.map
+/* Class for the listbox component */
+var Listbox = /** @class */ (function () {
+    /** Construct function
+     * @params obj: array object
+     {
+            el: the id container component.
+            hasTwoIcons: true or false -> this property add padding-left to the input element.
+            iconToggleClass: 'fa fa-caret-down', // classes for icon toggle.
+            iconLabelClass: 'fa fa-lock', //classes for icon left component.
+            rounded: true // this property apply the class is-rounded for the input element
+            name: //the name for the input element
+            id: //id for the input element
+    } */
+    function Listbox(obj) {
+        this.el = document.querySelector(obj.el);
+        this.el.innerHTML += "<input " + (obj.name ? "name=\"" + obj.name + "\"" : '') + " " + (obj.id ? "id=\"" + obj.id + "\"" : '') + " type=\"text\" class=\"input " + (obj.rounded ? 'is-rounded' : '') + " " + (obj.hasTwoIcons ? 'padding-l-2' : '') + "\">\n\t\t\t\t<icon class=\"is-toggle-listbox\"><i class=\"" + obj.iconToggleClass + "\"></i></icon>\n\t\t\t\t" + (obj.iconLabelClass ? "<icon class=\"listbox-icon\"><i class=\"" + obj.iconLabelClass + "\"></i></icon>" : '');
+        this.init();
+    }
+    /* the iit method, add the listeners for input and toggle icon elements */
+    Listbox.prototype.init = function () {
+        this.watch();
+    };
+    /* this method added interactivity for component listbox */
+    Listbox.prototype.watch = function () {
+        var _this = this;
+        var input = this.el.querySelector('.input');
+        var list = this.el.querySelector('list');
+        var listItems = list.querySelectorAll('list-item');
+        input.value = listItems[0].getAttribute('text');
+        input.readOnly = true;
+        listItems[0].classList.add('is-active');
+        input.addEventListener('click', function () {
+            list.classList.toggle('is-visible');
+        }, false);
+        var toggle = this.el.querySelector('.is-toggle-listbox');
+        toggle.addEventListener('click', function () {
+            list.classList.toggle('is-visible');
+        }, false);
+        var activo = 0;
+        listItems.forEach(function (item) {
+            item.addEventListener('click', function () {
+                listItems.forEach(function (el) {
+                    el.classList.remove('is-active');
+                });
+                item.classList.add('is-active');
+                activo = item;
+                list.classList.remove('is-visible');
+                _this.update(input, activo);
+            }, false);
+        });
+    };
+    /** this method update the value property in the input element
+     *
+     * @param input the input element selected in DOM
+     * @param activo the list-item element with class is-active */
+    Listbox.prototype.update = function (input, activo) {
+        input.value = activo.getAttribute('text');
+    };
+    return Listbox;
+}());

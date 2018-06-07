@@ -52,7 +52,6 @@ $name-radio-module: 'radio';
 $name-field-module: 'field';
 $name-control-module: 'control';
 $name-help-module: 'help';
-$name-date-module: 'date';
 $name-listbox-module: 'listbox';
 $name-color-module: 'color';
 // *************************************************************
@@ -126,6 +125,9 @@ $name-tabs-module: 'tabs';
 $name-tabs-item: 'tab';
 $name-tabs-content-module: 'tabs-content';
 $name-tabs-content-item: 'tab-content';
+//pagination module
+$name-module-pagination: 'pagination';
+$name-pagination-item: 'page-item';
 // *************************************************************
 // ****************** Set name class ***************************
 // *************************************************************
@@ -264,7 +266,7 @@ $class-padding-right: 'padding-r';
 $class-padding-vertical: 'padding-v';
 $class-padding-horizontal: 'padding-h';
 //class name opacity
-$class-opacity: 'op';
+$class-opacity: 'opacity';
 // class name color picker
 //color name picker ej: #{$class-color-picker}-primary = .color-primary
 $class-color-picker: 'color';
@@ -343,4 +345,4 @@ $share-padding: 0.5rem !default;
 $share-border-radius: 0.2rem !default;
 //maps
 //colores base
-$colores: ( dark: $dark, black: $black, cloud: $cloud, light: $light, primary: $primary, info: $info, success: $success, warning: $warning, danger: $danger);
+$colors: ( dark: $dark, black: $black, cloud: $cloud, light: $light, primary: $primary, info: $info, success: $success, warning: $warning, danger: $danger);

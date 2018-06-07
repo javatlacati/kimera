@@ -1,25 +1,20 @@
 /* modules and components saved in variables */
 
 let acordeon: NodeListOf<Element> = document.querySelectorAll('acordeon');
-let body = document.querySelector('body');
-let head = document.querySelector('head');
-let checkbox: NodeListOf<Element> = document.querySelectorAll('checkbox');
+let body: HTMLBodyElement = document.querySelector('body');
+let head: HTMLHeadElement = document.querySelector('head');
+let checkbox: NodeListOf<HTMLInputElement> = document.querySelectorAll('checkbox');
 let dropdown: NodeListOf<Element> = document.querySelectorAll('dropdown');
 let dropmenu: NodeListOf<Element> = document.querySelectorAll('dropmenu');
 let radio: NodeListOf<Element> = document.querySelectorAll('radio');
 let fab: NodeListOf<Element> = document.querySelectorAll('fab');
-let fabmenu: NodeListOf<Element> = document.querySelectorAll('fabmenu');
+//let fabmenu: NodeListOf<Element> = document.querySelectorAll('fabmenu');
 let navbar: NodeListOf<Element> = document.querySelectorAll('navbar');
 let modal: NodeListOf<Element> = document.querySelectorAll('[modal]');
 let range: NodeListOf<Element> = document.querySelectorAll('range');
-let slideshow: NodeListOf<Element> = document.querySelectorAll('slideshow');
+// let slideshow: NodeListOf<Element> = document.querySelectorAll('slideshow');
 let tabs: NodeListOf<Element> = document.querySelectorAll('tabs');
 let tabsContent: NodeListOf<Element> = document.querySelectorAll('tabs-content');
-//unused vars
-// let close_button = document.querySelectorAll('close');
-// let form_color: NodeListOf<Element> = document.querySelectorAll('color');
-// let process_bar: NodeListOf<Element> = document.querySelectorAll('process');
-// let toggle_button: NodeListOf<Element> = document.querySelectorAll('toggle');
 
 // initializes dynamic components
 init('checkbox');
@@ -33,8 +28,7 @@ init('range');
 /* ================== Import system CSS ==================== */
 
 let kmInclude: string = body.getAttribute('km-include'); //get attribute km-include
-const PATH_URL = '//cdn.jsdelivr.net/npm/kimera@0.4.4/css/'; // path CDN
-
+const PATH_URL: string = '//cdn.jsdelivr.net/npm/kimera@0.4.6/css/'; // path CDN
 let includeCSS: string[];
 if (kmInclude) {
     includeCSS = (`base ${kmInclude}`).split(' ');
@@ -42,7 +36,7 @@ if (kmInclude) {
     let url_include: string;
 
     if (hasKimera) {
-        url_include = `${PATH_URL}kimera.min.css}`; // url to file base.min.css
+        url_include = `${PATH_URL}kimera.min.css`; // url to file base.min.css
         head.appendChild(createLink(url_include));
     } else {
         for (let i = 0; i < includeCSS.length; i++) {
@@ -52,8 +46,8 @@ if (kmInclude) {
     }
 }
 
-// hide a element
-/* @param el: DOM element, classContain:  */
+/* hides an element.
+@param el: DOM element, classContain: class of the element */
 function hideSelector(el: NodeListOf<Element>, classContain: string) {
     if (el.length > 0) {
         for (let i = 0; i < el.length; i++) {
@@ -148,9 +142,9 @@ role initializes a elment type renage
 @param el: The parent element <range></range> selected
 */
 function initRange(el: Element) {
-    let input = el.querySelector('input');
-    let label = el.querySelector('label');
-    let position = parseInt(window.getComputedStyle(input, null).getPropertyValue('width')) / 100;
+    let input = el.querySelector('input'),
+        label = el.querySelector('label'),
+        position = parseInt(window.getComputedStyle(input, null).getPropertyValue('width')) / 100;
 
     label.style.left = `${((parseInt(input.value) * position) - 10)}px`;
     label.textContent = input.value;
@@ -197,60 +191,6 @@ function showContentTab(id: string) {
     }
 }
 
-/* =============== Slideshow ================ */
-
-/*if (slideshow.length > 0) {
-    for (let i = 0; i < slideshow.length; i++) {
-        let nextSlider = slideshow[i].querySelector('.next-slide');
-        let previuSlider = slideshow[i].querySelector('.previus-slide');
-        let intervalSlide = slideshow[i].getAttribute('interval') || 5000;
-        let slider = slideshow[i].querySelectorAll('slider');
-        let ctrl = 0;
-
-        slider[0].classList.add('is-visible');
-        for (let h = 0; h < slider.length; h++) {
-            let sliderImg = slider[h].getAttribute('src');
-            let sliderAlt = slider[h].getAttribute('alt');
-            let img = document.createElement('img');
-            img.setAttribute('src', sliderImg);
-            img.setAttribute('alt', sliderAlt);
-            slider[h].appendChild(img);
-            removeAttr(slider[h], 'src alt');
-        }
-
-        onEventListener(nextSlider, 'click', function() {
-            if (ctrl === slider.length - 1) ctrl = -1;
-            controlSlide(1);
-        });
-
-        onEventListener(previuSlider, 'click', function() {
-            if (ctrl === 0) ctrl = slider.length;
-            controlSlide(-1);
-        });
-
-        if (slideshow[i].hasAttribute('autoplay')) {
-            setInterval(controlSlide(1), intervalSlide);
-        }
-
-        function controlSlide(c) {
-            clearSlides();
-            if (c > 0) {
-                ctrl++;
-                slider[ctrl].classList.add('is-visible');
-            } else {
-                ctrl--;
-                slider[ctrl].classList.add('is-visible');
-            }
-        }
-
-        function clearSlides() {
-            for (let i = 0; i < slider.length; i++) {
-                slider[i].classList.remove('is-visible');
-            }
-        }
-    }
-}*/
-
 /*
 initialized function for dinamic components.
 @params
@@ -261,27 +201,27 @@ function init(component: string) {
     let element: NodeListOf<Element> = document.querySelectorAll(component);
 
     for (let i = 0; i < element.length; i++) {
-        let currentElement: Element = element[i],
-            id = currentElement.id;
+        let currentElement: Element = element[i];
+        let id: string = currentElement.id;
         let text: string = currentElement.getAttribute('text');
-        let check = currentElement.getAttribute('checked');
-        let require = currentElement.getAttribute('required');
-        let form = currentElement.getAttribute('form');
-        let name = currentElement.getAttribute('name');
-        let value = currentElement.getAttribute('value');
+        let check: string = currentElement.getAttribute('checked');
+        let require: string = currentElement.getAttribute('required');
+        let form: string = currentElement.getAttribute('form');
+        let name: string = currentElement.getAttribute('name');
+        let value: string = currentElement.getAttribute('value');
 
         switch (component) {
             case 'checkbox':
             case 'radio':
                 currentElement.innerHTML =
-                    `<input type="${component}"${id ? ' id="' + id + '"' : ''}${form ? ' form="' + form + '"' : ''}${name ? ' name="' + name + '"' : ''}${check ? check : ''}${ require ? require : ''}/><label ${id ? ' for="' + id + '"' : ''}>${text ? text : ''}</label>`;
+                    `<input type="${component}"${id ? ' id="' + id + '"' : ''}${value ? ' value="' + value + '"' : ''}${form ? ' form="' + form + '"' : ''}${name ? ' name="' + name + '"' : ''}${check ? check : ''}${require ? require : ''}/><label ${id ? ' for="' + id + '"' : ''}>${text ? text : ''}</label>`;
                 break;
             case 'color':
                 currentElement.innerHTML = '<input type="color"' + (id ? 'id="' + id + '"' : '') + (value ? 'value="' + value + '"' : '') + '/>';
                 break;
             case 'process':
                 currentElement.innerHTML = '<complete ' + (value ? 'value="' + value + '"' : '') + '></complete>';
-                let querySelector:HTMLElement = currentElement.querySelector('complete');
+                let querySelector: HTMLElement = currentElement.querySelector('complete');
                 querySelector.style.width = currentElement.getAttribute('value');
                 break;
             case 'toggle':
@@ -311,10 +251,12 @@ create link element
 url: Dynamic URL for import system
 type: string
 */
-function createLink(url: string) {
-    let link = document.createElement('link');
+function createLink(url: string): HTMLLinkElement {
+    let link: HTMLLinkElement = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('href', url);
+    // link.rel = 'stylesheet';
+    // link.href = url;
     return link;
 }
 
@@ -382,9 +324,9 @@ function removeAttr(el: Element, attr: string) {
 // select all previous elements siblings
 /* @param element - type: DOM objet */
 function prevSiblings(target: Element): Element[] {
-    let siblings: Element[] = [];
-    let n = target;
-    if (n !== null && n !== undefined && n+'' !== '') {
+    let siblings: Element[] = [],
+        n = target;
+    if (n !== null && n !== undefined && n + '' !== '') {
         while (n = n.previousElementSibling) {
             siblings.push(n);
         }
@@ -392,14 +334,15 @@ function prevSiblings(target: Element): Element[] {
     } else {
         return siblings;
     }
+
 }
 
 // select all next elements siblings
 /* @param element - type: DOM objet */
 function nextSiblings(target: Element): Element[] {
     let siblings: Element[] = [];
-    let n = target ;
-    if (n !== null && n !== undefined && n+'' !== '') {
+    let n = target;
+    if (n !== null && n !== undefined && n + '' !== '') {
         while (n = n.nextElementSibling) {
             siblings.push(n);
         }
@@ -412,13 +355,13 @@ function nextSiblings(target: Element): Element[] {
 // save all previous and next elements siblings in array objet
 /* @param element - type: DOM objet */
 function siblings(target: Element): Element[] {
-    let previus:Element[] = prevSiblings(target) || [];
-    let next:Element[] = nextSiblings(target) || [];
+    let previus = prevSiblings(target) || [],
+        next = nextSiblings(target) || [];
     return previus.concat(next);
 }
 
-// fab, dropdown event listener
-function showToggle(e: Event) {
+/**fab, dropdown event listener*/
+function showToggle(e: Event): void {
     e.stopPropagation();
     this.nextElementSibling.classList.toggle('is-visible');
 }
