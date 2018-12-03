@@ -1,22 +1,19 @@
 /* Class for the listbox component */
+/* @params obj: array object
+{
+			 el: the id container component.
+			 hasTwoIcons: true or false -> this property add padding-left to the input element.
+			 iconToggleClass: 'fa fa-caret-down', // classes for icon toggle.
+			 iconLabelClass: 'fa fa-lock', //classes for icon left component.
+			 rounded: true // this property apply the class is-rounded for the input element
+			 name: //the name for the input element
+			 id: //id for the input element
+} */
 class Listbox {
     el: Element;
-
-    /** Construct function
-     * @params obj: array object
-     {
-            el: the id container component.
-            hasTwoIcons: true or false -> this property add padding-left to the input element.
-            iconToggleClass: 'fa fa-caret-down', // classes for icon toggle.
-            iconLabelClass: 'fa fa-lock', //classes for icon left component.
-            rounded: true // this property apply the class is-rounded for the input element
-            name: //the name for the input element
-            id: //id for the input element
-    } */
-
     constructor(obj: any) {
         this.el = document.querySelector(obj.el);
-        this.el.innerHTML += `<input ${obj.name ? `name="${obj.name}"` : ''} ${obj.id ? `id="${obj.id}"` : ''} type="text" class="input ${obj.rounded ? 'is-rounded' : ''} ${obj.hasTwoIcons ? 'padding-l-2' : ''}">
+        this.el.innerHTML += `<input ${obj.name ? `name="${obj.name}"` : ''} ${obj.id ? `id="${obj.id}"` : ''} type="text" class="input${obj.rounded ? ' is-rounded' : ''}${obj.hasTwoIcons ? ' padding-l-2' : ''}">
 				<icon class="is-toggle-listbox"><i class="${obj.iconToggleClass}"></i></icon>
 				${obj.iconLabelClass ? `<icon class="listbox-icon"><i class="${obj.iconLabelClass}"></i></icon>` : ''}`;
         this.init();
@@ -31,9 +28,10 @@ class Listbox {
     /* this method added interactivity for component listbox */
     watch() {
         let input: HTMLInputElement = this.el.querySelector('.input');
-        let list: HTMLElement = this.el.querySelector('list');
-        let listItems: NodeListOf<HTMLElement> = list.querySelectorAll('list-item');
-        input.value = listItems[0].getAttribute('text');
+        let list: Element = this.el.querySelector('list');
+		let listItems = this.el.querySelectorAll('list-item');
+		
+		input.value = listItems[0].hasAttribute('text') ? listItems[0].getAttribute('text') : listItems[0].getAttribute('value');
         input.readOnly = true;
 
         listItems[0].classList.add('is-active');
@@ -47,23 +45,25 @@ class Listbox {
             list.classList.toggle('is-visible');
         }, false);
 
-        let activo = 0;
+		let activo: Element;
 
-        listItems.forEach((item: any) => {
-            item.addEventListener('click', () => {
-                listItems.forEach((el: any) => {
-                    el.classList.remove('is-active');
-                });
-                item.classList.add('is-active');
-                activo = item;
-                list.classList.remove('is-visible');
-                this.update(input, activo);
-            }, false);
+		for (let i = 0; i < listItems.length; i++) {
+			listItems[i].addEventListener('click', () => {
+				for (let j = 0;j < listItems.length; j++) {
+					if(listItems[j].classList.contains('is-active')) {
+						listItems[j].classList.remove('is-active');
+					}
+				}
 
-        });
+				listItems[i].classList.add('is-active');
+				activo = listItems[i];
+				list.classList.remove('is-visible');
+				this.update(input, activo);
+			}, false);
+		}	
     }
 
-    /** this method update the value property in the input element
+    /* * this method update the value property in the input element
      *
      * @param input the input element selected in DOM
      * @param activo the list-item element with class is-active */

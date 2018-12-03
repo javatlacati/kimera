@@ -1,0 +1,259 @@
+.#{$class-small} {
+    &,
+    & * {
+        font-size: $text-small;
+    }
+}
+
+.#{$class-medium} {
+    &,
+    & * {
+        font-size: $text-medium;
+    }
+}
+
+.#{$class-large} {
+    &,
+    & * {
+        font-size: $text-large;
+    }
+}
+
+//texto etiquetas personalizadas
+.#{$class-tiny} {
+    &,
+    & * {
+        font-size: $text-x-small;
+    }
+}
+
+.#{$class-jumbo} {
+    &,
+    & * {
+        font-size: $text-x-large;
+    }
+}
+
+.#{$class-text-upper} {
+    text-transform: $text-upper;
+}
+
+.#{$class-text-lower} {
+    text-transform: $text-lower;
+}
+
+.#{$class-text-underline} {
+    text-decoration: underline;
+}
+
+.#{$class-text-bolder} {
+    font-weight: $text-bold;
+}
+
+// color text
+.#{$class-text-white} {
+    color: $cloud;
+}
+
+.#{$class-text-primary} {
+    color: $primary;
+}
+
+.#{$class-text-info} {
+    color: $info;
+}
+
+.#{$class-text-success} {
+    color: $success;
+}
+
+.#{$class-text-warning} {
+    color: darken($warning, 10);
+}
+
+.#{$class-text-danger} {
+    color: $danger;
+}
+
+.#{$class-text-right} {
+    &,
+    & * {
+        text-align: right;
+    }
+}
+
+.#{$class-text-justify} {
+    &,
+    & * {
+        text-align: justify;
+    }
+}
+
+.#{$class-text-center} {
+    &,
+    & * {
+        text-align: center;
+    }
+}
+
+.#{$class-fluid-container},
+.#{$class-full-center} {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.#{$class-full-center} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    text-align: left;
+}
+
+@include since(tablet) {
+    .#{$class-wrapper} {
+        max-width: 1000px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+}
+
+//estilos de etiquetas h1,h2,h3,h4,h5,h6
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%;
+    margin: 0;
+    -webkit-font-smoothing: $smooting-text;
+    text-rendering: $render-text;
+    &, a, small {
+        color: inherit;
+        font-weight: inherit;
+    }
+    small {
+        opacity: .8;
+        font-size: 70%;
+    }
+}
+
+h1 {
+    font-size: $h1-size;
+}
+
+h2 {
+    font-size: $h2-size;
+}
+
+h3 {
+    font-size: $h3-size;
+}
+
+h4 {
+    font-size: $h4-size;
+}
+
+h5 {
+    font-size: $h5-size;
+}
+
+h6 {
+    font-size: $h6-size;
+}
+
+// helpers de reset to margin and padding
+.#{$class-margin}-#{'0'} {
+    margin: 0 !important;
+}
+
+.#{$class-padding}-#{'0'} {
+    padding: 0 !important;
+}
+
+.#{$class-padding}-#{'05'} {
+    padding: 0.5rem;
+}
+
+.#{$class-padding-vertical}-#{'05'} {
+    padding: 0.5rem 0;
+}
+
+.#{$class-padding-horizontal}-#{'05'} {
+    padding: 0 0.5rem;
+}
+
+// print the margin and padding helper class
+@for $i from 1 through 3 {
+    .#{$class-padding}-#{$i} {
+        padding: #{$i}rem;
+    }
+    .#{$class-margin}-#{$i} {
+        margin: #{$i}rem;
+    }
+    .#{$class-padding-vertical}-#{$i} {
+        padding: #{$i}rem 0;
+    }
+    .#{$class-margin-vertical}-#{$i} {
+        margin: #{$i}rem 0;
+    }
+    .#{$class-padding-horizontal}-#{$i} {
+        padding: 0 #{$i}rem;
+    }
+    .#{$class-margin-horizontal}-#{$i} {
+        margin: 0 #{$i}rem;
+    }
+    .#{$class-padding-top}-#{$i} {
+        padding-top: #{$i}rem;
+    }
+    .#{$class-margin-top}-#{$i} {
+        margin-top: #{$i}rem;
+    }
+    .#{$class-padding-bottom}-#{$i} {
+        padding-bottom: #{$i}rem;
+    }
+    .#{$class-margin-bottom}-#{$i} {
+        margin-bottom: #{$i}rem;
+    }
+    .#{$class-padding-left}-#{$i} {
+        padding-left: #{$i}rem;
+    }
+    .#{$class-margin-left}-#{$i} {
+        margin-left: #{$i}rem;
+    }
+    .#{$class-padding-right}-#{$i} {
+        padding-right: #{$i}rem;
+    }
+    .#{$class-margin-right}-#{$i} {
+        margin-right: #{$i}rem;
+    }
+}
+
+// print the opacity class range
+@for $i from 1 through 9 {
+    .#{$class-opacity}-#{$i} {
+        opacity: #{'.'}$i;
+    }
+}
+
+//mixin x-small shadow
+
+@include set-shadow (2px, 'xs', $opacity-shadow);
+
+//mixin small shadow
+
+@include set-shadow (4px, 's', $opacity-shadow);
+
+//mixin normal shadow
+
+@include set-shadow (6px, '', $opacity-shadow);
+
+//mixin medium shadow
+
+@include set-shadow (10px, 'm', $opacity-shadow);
+
+//mixin large shadow
+
+@include set-shadow (16px, 'l', $opacity-shadow);
