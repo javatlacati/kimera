@@ -1,0 +1,75 @@
+{
+  "name": "@levelcss/level-css-framework-css",
+  "version": "0.6.0",
+  "description": "A Modern CSS and JS framework based on flexbox and custom tags",
+  "main": "gulpfile.js",
+  "scripts": {
+    "build": "sass src/level.scss dist/level.css --style=compressed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgeAntrax/level.git"
+  },
+  "keywords": [
+    "css",
+    "scss",
+    "flexbox",
+    "responsive",
+    "framework",
+    "modular",
+    "library",
+    "custom-tags",
+    "javascript",
+    "html5",
+    "css3",
+    "grid",
+    "libreria css",
+    "plantillas"
+  ],
+  "author": "Leonardo Quintana Juarez",
+  "email": "spicer_94@hotmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JorgeAntrax/level/issues"
+  },
+  "contributors": [
+    {
+      "name": "Ruslan López Carro"
+    }
+  ],
+  "homepage": "https://jorgeantrax.github.io/level-docs/",
+  "dependencies": {
+    "@nx/js": "^21.3.5",
+    "nx": "^21.3.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@nx/eslint": "21.3.5",
+    "@nx/eslint-plugin": "21.3.5",
+    "@nx/jest": "21.3.5",
+    "@swc-node/register": "~1.9.1",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "@types/jest": "^30.0.0",
+    "@types/node": "18.16.9",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^10.0.0",
+    "jest": "^30.0.2",
+    "jest-environment-node": "^30.0.2",
+    "jest-util": "^30.0.2",
+    "jsonc-eslint-parser": "^2.1.0",
+    "mini-css-extract-plugin": "^2.9.2",
+    "nx": "21.3.5",
+    "prettier": "^2.6.2",
+    "sass": "^1.89.2",
+    "ts-jest": "^29.4.0",
+    "ts-node": "10.9.1",
+    "tslib": "^2.3.0",
+    "typescript": "~5.8.2",
+    "typescript-eslint": "^8.29.0"
+  },
+  "nx": {},
+  "directories": {
+    "test": "test"
+  }
+}

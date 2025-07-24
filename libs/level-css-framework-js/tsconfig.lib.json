@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "..",
+    "sourceMap": true,
+    "noImplicitReturns": true,
+    "target": "es2015",
+    "moduleResolution": "node",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "declaration": true,
+    "outDir": "./lib/esm",
+    "lib": [
+      "decorators",
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015.iterable"
+    ]
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts"
+  ]
+}

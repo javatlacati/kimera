@@ -1,0 +1,19 @@
+{
+  "name": "level-css-framework-js",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/level-css-framework-js/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/level-css-framework-js",
+        "main": "libs/level-css-framework-js/src/index.ts",
+        "tsConfig": "libs/level-css-framework-js/tsconfig.lib.json",
+        "assets": ["libs/level-css-framework-js/*.md"]
+      }
+    }
+  }
+}

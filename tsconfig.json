@@ -1,9 +1,17 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-		"module": "commonjs",
+    "baseUrl": "..",
+    "module": "commonjs",
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-		"target": "es5"
+    "target": "es5",
+    "paths": {
+      "@levelcss/level-css-framework-css": [
+        "libs/level-css-framework-css/src/index.ts"
+      ],
+      "@levelcss/level-css-framework-js": [
+        "libs/level-css-framework-js/src/index.ts"
+      ]
+    }
   }
 }

@@ -1,0 +1,57 @@
+{
+  "name": "@levelcss/level-css-framework-js",
+  "version": "0.6.0",
+  "description": "A Modern CSS and JS framework based on flexbox and custom tags",
+  "main": "lib/cjs/index.js",
+  "type": "module",
+  "scripts": {
+    "compile": "tsc",
+    "watch:build": "tsc --watch",
+    "build": "tsc  --build",
+    "clean": "tsc --build --clean",
+    "build_webpack": "webpack",
+    "webpack_build": "webpack-cli --config webpack.config.cjs",
+    "tsc_export": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "prepublishOnly": "npm run tsc",
+    "test": "ts-mocha -p tsconfig.json test/**/*.spec.ts",
+    "test1": "mocha --loader=ts-node/esm test/**/*.spec.ts",
+    "coverage": "nyc --loader ts-node/esm npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorgeAntrax/level.git"
+  },
+  "keywords": [
+    "css",
+    "scss",
+    "flexbox",
+    "responsive",
+    "framework",
+    "modular",
+    "library",
+    "custom-tags",
+    "javascript",
+    "html5",
+    "css3",
+    "grid",
+    "libreria css",
+    "plantillas"
+  ],
+  "author": "Leonardo Quintana Juarez",
+  "email": "spicer_94@hotmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JorgeAntrax/level/issues"
+  },
+  "contributors": [
+    {
+      "name": "Ruslan López Carro"
+    }
+  ],
+  "homepage": "https://jorgeantrax.github.io/level-docs/",
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "webpack": "^5.100.2",
+    "webpack-cli": "^6.0.1"
+  }
+}
